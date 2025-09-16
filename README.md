@@ -1,4 +1,73 @@
-# To use this on your machine to build and run a nodejs project
+# What is this?
+
+This repo is a template for a project for building a javascript module from Typescript source code. It uses typescript-eslint to make writing the sourcecode in VSCode easier. It uses Parcel to bundle the source code into both a CommonJs and ES6 module.
+
+## What's a Javascript module?
+
+It's some javascript code that can be imported by any other javascript and used.
+
+For instance, here's a javascript module (which exports a function using what's called ES6 syntax)
+
+```javascript
+//hello-world.ts or hello-world.js
+export function helloWorld() {
+  console.log("Hello, world.");
+}
+```
+
+Another javascript file can import that module and use it like this: (Again, this is using ES6 export/import syntax.)
+
+```javascript
+import { helloWorld } from "hello-world";
+
+helloWorld();
+```
+
+## What's Typescript?
+
+Typescript is an extension of Javascript that allows you to use type annotations. This helps you to catch mistakes in your code before you make them. When you first start using it, it will be a huge pain in the ass, relative to writing plain Javascript. But once you get used to it, you will be able to work much faster than you would in plain Javascript. The best resource both to learn Typescript and as a reference is the Typescript Handbook:
+
+https://www.typescriptlang.org/docs/handbook/intro.html
+
+## Basic Typescript Usage
+
+To write in typescript, write in ".ts" files, such as "index.ts" in this repo. In recent versions of node, you can run a .ts file in node, just like this: `node index.ts`.
+
+When you're developing code and want to run it (or run it in a test environment like jest), you can just use node to run your .ts files, as in `node index.ts`.
+
+When you want to build what you've written into a module for use in other projects, you'll want to run the code through the typescript complier, as in `tsc index.ts`.
+
+A key feature of how Typescript code behaves is the `tsconfig.json` file that configures Typescript. If you're wanting to change the way typescript behaves in this project, edit the `tsconfig.json`. Here's the docs about tsconfig.json:
+
+https://www.typescriptlang.org/docs/handbook/tsconfig-json.html
+
+## What's ESLint?
+
+ESLint checks your javascript and typescript code for syntax errors. When combined with VSCode, it produces real-time warnings and hints that help you write code faster and catch mistakes before you make them.
+
+Technically, this project uses eslint-typescript, which is a variant of eslint that can handle Typescript code.
+
+Eslint's behavior is highly configurable, using a file call `eslint.config.mjs`. If you want to change how eslint behaves in this project, edit `eslint.config.mjs`.
+
+Here's the docs:
+
+https://typescript-eslint.io/getting-started/
+
+## What's Parcel?
+
+The module you produce with this project will be written in pure Javascript, NOT Typescript, so that it can be run in a browser, or used by other programmers who want to write in Javascript instead of Typescript. This means that your source code needs to be "transpiled" from Typescript to Javascript to produce the actual module your building.
+
+"Transpilation" of code from one language to another is one of a variety of code-transformation tasks that fall under the rubric of "bundling". Parcel is a javascript module that "bundles" source code, doing things like transpilation along the way.
+
+The bottom line is that the inclusion of parcel allows you to produce a javascript module that can be used in the browser and by other programmers without knowing all the details of how to bundle.
+
+More about using Parcel to build a module as in this project is here:
+
+https://parceljs.org/getting-started/library/
+
+# How to use this on your machine to build a module
+
+Once you've written your source code, you're meant to bundle it into a module for distribution using Parcel. To do this, you need a recent version of Nodejs on your machine. So the first thing to do is to make sure you have a working installation of Nodejs. The best way to handle Nodejs locally is through a tool called NVM, which helps you manage multiple versions of Node.
 
 ## Step 1: install NVM on your machine
 
@@ -76,55 +145,12 @@ Here's the extension:
 
 https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
 
-# Understanding what this is
+## Step 4: Write your source code
 
-This starter is set up as a base for writing an ES6 module that is meant to run in Nodejs (as opposed to being run in a browser), and that is compiled from source code written in Typescript.
+Make sure to use the `.ts` extension on your sourcecode files so that they are recognized as typescript files by Parcel!
 
-## What's an ES6 Module?
+## Step 5: Bundle your code
 
-It's a javascript module that export stuff using ES6 syntax, like this...
-
-```javascript
-//hello-world.ts or hello-world.js
-export function helloWorld() {
-  console.log("Hello, world.");
-}
+```bash
+npm run build
 ```
-
-...and that can be imported by other Javascript or Typescript source code using E6 syntax like this:
-
-```javascript
-import { helloWorld } from "hello-world";
-
-helloWorld();
-```
-
-## What's Typescript?
-
-Typescript is an extension of Javascript that allows you to use type annotations. This helps you to catch mistakes in your code before you make them. When you first start using it, it will be a huge pain in the ass, relative to writing plain Javascript. But once you get used to it, you will be able to work much faster than you would in plain Javascript. The best resource both to learn Typescript and as a reference is the Typescript Handbook:
-
-https://www.typescriptlang.org/docs/handbook/intro.html
-
-## Basic Typescript Usage
-
-To write in typescript, write in ".ts" files, such as "index.ts" in this repo. In recent versions of node, you can run a .ts file in node, just like this: `node index.ts`.
-
-When you're developing code and want to run it (or run it in a test environment like jest), you can just use node to run your .ts files, as in `node index.ts`.
-
-When you want to build what you've written into a module for use in other projects, you'll want to run the code through the typescript complier, as in `tsc index.ts`.
-
-A key feature of how Typescript code behaves is the `tsconfig.json` file that configures Typescript. If you're wanting to change the way typescript behaves in this project, edit the `tsconfig.json`. Here's the docs about tsconfig.json:
-
-https://www.typescriptlang.org/docs/handbook/tsconfig-json.html
-
-## What's ESLint?
-
-ESLint checks your javascript and typescript code for syntax errors. When combined with VSCode, it produces real-time warnings and hints that help you write code faster and catch mistakes before you make them.
-
-Technically, this project uses eslint-typescript, which is a variant of eslint that can handle Typescript code.
-
-Eslint's behavior is highly configurable, using a file call `eslint.config.mjs`. If you want to change how eslint behaves in this project, edit `eslint.config.mjs`.
-
-Here's the docs:
-
-https://typescript-eslint.io/getting-started/
