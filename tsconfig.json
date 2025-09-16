@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es2022", // Or a newer ES version supported by your Node.js runtime
+    "module": "nodenext", // Or "node16" for Node.js v16 and above
+    "moduleResolution": "nodenext", // Or "node16" for Node.js v16 and above
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
+}
